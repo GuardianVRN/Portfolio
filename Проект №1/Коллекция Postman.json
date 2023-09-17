@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "39f740f7-24d7-4fda-af4e-463bd1bd14c4",
+		"name": "Курсовая 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25095353"
+	},
+	"item": [
+		{
+			"name": "Создание событий",
+			"item": [
+				{
+					"name": "Создание события в прошлом",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startAt\": \"2023-07-04T23:15:00+03:00\",\n    \"endAt\": \"2023-07-04T23:50:00+03:00\",\n    \"title\": \"PEREG_TEST_PAST\",\n    \"description\": \"TEST event from NIKITA PEREGUDOV\",\n    \"color\": \"#FAC641\",\n    \"backgroundColor\": \"#FFF7C7\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(API only) Создание события без цветовой маркировки",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startAt\": \"2023-07-05T23:15:00+03:00\",\n    \"endAt\": \"2023-07-05T23:50:00+03:00\",\n    \"title\": \"PEREG_TEST\",\n    \"description\": \"TEST event from NIKITA PEREGUDOV\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(API only) Создание события с невалидным временем",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startAt\": \"2023-07-05T31:15:00+03:00\",\n    \"endAt\": \"2023-07-05T31:50:00+03:00\",\n    \"title\": \"PEREG_TEST\",\n    \"description\": \"TEST event from NIKITA PEREGUDOV\",\n    \"color\": \"#FAC641\",\n    \"backgroundColor\": \"#FFF7C7\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Редактирование событий",
+			"item": [
+				{
+					"name": "(API only) Изменение цвета события на невалидный",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startAt\": \"2023-07-05T23:15:00+03:00\",\n    \"endAt\": \"2023-07-05T23:50:00+03:00\",\n    \"title\": \"PEREG_TEST\",\n    \"description\": \"TEST event from NIKITA PEREGUDOV\",\n    \"color\": \"#FF0000\",\n    \"backgroundColor\": \"#004DFF\",\n    \"id\": {{eventId}},\n    \"oldStartAt\": \"2023-07-05T23:15:00+03:00\"\n\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}updatePersonal",
+							"host": [
+								"{{baseUrl}}updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Перенос события из прошлого в будущее",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startAt\": \"2023-07-31T23:15:00+03:00\",\n    \"endAt\": \"2023-07-31T23:50:00+03:00\",\n    \"title\": \"PEREG_TEST\",\n    \"description\": \"TEST event from NIKITA PEREGUDOV\",\n    \"color\": \"#FAC641\",\n    \"backgroundColor\": \"#FFF7C7\",\n    \"id\": {{eventId}},\n    \"oldStartAt\": \"2023-07-05T23:15:00+03:00\"\n\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}updatePersonal",
+							"host": [
+								"{{baseUrl}}updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование события без изменений",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startAt\": \"2023-07-05T23:15:00+03:00\",\n    \"endAt\": \"2023-07-05T23:50:00+03:00\",\n    \"title\": \"PEREG_TEST\",\n    \"description\": \"TEST event from NIKITA PEREGUDOV\",\n    \"color\": \"#FAC641\",\n    \"backgroundColor\": \"#FFF7C7\",\n    \"id\": {{eventId}},\n    \"oldStartAt\": \"2023-07-05T23:15:00+03:00\"\n\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}updatePersonal",
+							"host": [
+								"{{baseUrl}}updatePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Удаление событий",
+			"item": [
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{eventId}},\n    \"startAt\": \"2023-07-05T20:15:00+00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление удаленного события",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{eventId}},\n    \"startAt\": \"2023-07-05T20:15:00+00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Отображение списка личных событий",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token_global}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": \"2023-07-01T00:00:00+03:00\",\n    \"till\": \"2023-07-05T23:59:59+03:00\",\n    \"onlyTypes\": [\n        \"slot\",\n        \"event\"\n    ],\n    \"statuses\": [\n        \"without_status\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}events",
+					"host": [
+						"{{baseUrl}}events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Основное) Создание события с латиницей в названии",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"eventId\"",
+							"var value = pm.response.json().data.payload.id",
+							"pm.collectionVariables.set(key, value)",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token_global}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startAt\": \"2023-07-05T23:15:00+03:00\",\n    \"endAt\": \"2023-07-05T23:50:00+03:00\",\n    \"title\": \"PEREG_TEST\",\n    \"description\": \"TEST event from NIKITA PEREGUDOV\",\n    \"color\": \"#FAC641\",\n    \"backgroundColor\": \"#FFF7C7\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}createPersonal",
+					"host": [
+						"{{baseUrl}}createPersonal"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token_global",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjE0NzIwMDY5LCJpZGVudGl0eSI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsImlkZW50aXR5TG9naW4iOm51bGwsImlkZW50aXR5RW1haWwiOiJ0ZXN0LnRzdDMyMEBza3llbmcucnUiLCJpZGVudGl0eVBob25lIjoiKzc5ODU0NTg2NTY4IiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjpudWxsLCJlbWFpbCI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsInVpTGFuZ3VhZ2UiOiJydSIsImxvY2FsZSI6InJ1Iiwic2VydmljZUxvY2FsZSI6bnVsbCwidWFzIjozMCwiand0VHlwZSI6MSwianRpIjoiZnQyN3lJOEoycVBiVFRHSUlvOER4TnBGeVBVNkh6cVciLCJicmFuZCI6bnVsbCwiZXhwIjoxNjg4NjYzNTA4LCJhSXNTdHJvbmciOnRydWUsImFUeXBlIjoiVVNFUk5BTUVfUEFTU1dPUkQiLCJhVGltZSI6MTY4ODU3NzEwNywicm9sZXMiOlsiUk9MRV9URUFDSEVSX0NBTkRJREFURSIsIlJPTEVfVEVBQ0hFUl9DQU5ESURBVEVfQkFTRV9BQ0NFU1MiLCJST0xFX1RUQ19VU0FHRSIsIlJPTEVfVklNQk9YX1RFQUNIRVJfVVNBR0UiLCJST0xFX1RFQUNIRVIiLCJST0xFX0NSTTJfVEVBQ0hFUl9BQ0NFU1MiLCJST0xFX01BVEhfVEVBQ0hFUiIsIlJPTEVfTUFUSF9DT05URU5UX1RIRU1FX1ZJRVciXX0.JR5OH1k2u_nDn_Z-tIFulD0POj3kvfOdEPw5g9o7rWKr9gOfEDq1wavdieLvfB4irUWzWnNODxTvcOHhhE7ixc_WdJ9yQu48Na0THa-tZ1hwyHZEjvdqA6hEIbOykuyvlqBxGecWbOZri6Rz3B9WInQxVkK5PoPluoeRESMNmrd8Xs3E4jTO0o4-aBD_pvhVgodAY30z4tx9I8P6Ar_DXmp2ET4h6LO5M0w2Q8Wl0kHrai5I7rD_fX88bMrZqmo9lhTsFBoazSjCm36icHbP6k6KaVG9gHTk0EQA--vhQgKzeXUT92cg3V5uWiyIBD5FdENbHDEPNo8C4IakyJvlkIyy7QnZ8iNrdLnj5aoSRDc3_7sDO3lrPTD9xId9iwTT2EGrvkQA2E6699lY08hNQiZAeOKO7u-Nj0QeJkSZuPCkJnLT1DQY_s7byKIPG7lAacscMIij6U99krRTp8wRPPqNPzkS7GSErlJhWyXvwhvgI0BdX7nUW7Mcgkc44jycF-iQLJnNQvutlRNP72lUC8tbjp4J-qU4jN5tmIJh1jGQEqdgPDN9_6gze7ArtIYDLoWRQnnbcNXZjlxOj7OVnNKVM8d37MCkRjTxU5PkDZYCCww0OzaFk4Hfc8W6Lt2qrvvGfGb_izW0rDGMUQUq58EBKl29SWdMRVXNGl49aZk",
+			"type": "string"
+		},
+		{
+			"key": "eventId",
+			"value": ""
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://api-teachers.skyeng.ru/v2/schedule/"
+		}
+	]
+}
