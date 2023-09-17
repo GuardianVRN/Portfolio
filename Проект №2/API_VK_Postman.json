@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "19d76a0f-23c3-4b3a-a8b4-49a68275b438",
+		"name": "VK API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25095353"
+	},
+	"item": [
+		{
+			"name": "Add a photo to wall",
+			"item": [
+				{
+					"name": "Get server",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"upload_url\", pm.response.json().response.upload_url);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BaseUrl}}photos.getWallUploadServer?v={{v}}",
+							"host": [
+								"{{BaseUrl}}photos",
+								"getWallUploadServer"
+							],
+							"query": [
+								{
+									"key": "v",
+									"value": "{{v}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload a photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"server\", pm.response.json().server);",
+									"pm.collectionVariables.set(\"photo\", pm.response.json().photo);",
+									"pm.collectionVariables.set(\"hash\", pm.response.json().hash);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{upload_url}}",
+							"host": [
+								"{{upload_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save a photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"picture_id\", jsonData.response[0].id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}photos.saveWallPhoto?server={{server}}&photo={{photo}}&hash={{hash}}&v={{v}}",
+							"host": [
+								"{{BaseUrl}}photos",
+								"saveWallPhoto"
+							],
+							"query": [
+								{
+									"key": "server",
+									"value": "{{server}}"
+								},
+								{
+									"key": "photo",
+									"value": "{{photo}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a photo to wall",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"post_id\", pm.response.json().response.post_id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}wall.post?owner_id={{owner_id}}&friends_only=1&message=TEST&attachments=photo{{owner_id}}_{{picture_id}}&v={{v}}",
+							"host": [
+								"{{BaseUrl}}wall",
+								"post"
+							],
+							"query": [
+								{
+									"key": "owner_id",
+									"value": "{{owner_id}}"
+								},
+								{
+									"key": "friends_only",
+									"value": "1"
+								},
+								{
+									"key": "message",
+									"value": "TEST"
+								},
+								{
+									"key": "attachments",
+									"value": "photo{{owner_id}}_{{picture_id}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get all posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BaseUrl}}wall.get?owner_id={{owner_id}}&v={{v}}",
+					"host": [
+						"{{BaseUrl}}wall",
+						"get"
+					],
+					"query": [
+						{
+							"key": "owner_id",
+							"value": "{{owner_id}}"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a unique post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}wall.getById?posts={{owner_id}}_{{post_id}}&v={{v}}",
+					"host": [
+						"{{BaseUrl}}wall",
+						"getById"
+					],
+					"query": [
+						{
+							"key": "posts",
+							"value": "{{owner_id}}_{{post_id}}"
+						},
+						{
+							"key": "v",
+							"value": "{{v}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BaseUrl",
+			"value": "https://api.vk.com/method/",
+			"type": "string"
+		},
+		{
+			"key": "owner_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "v",
+			"value": "5.131.",
+			"type": "string"
+		},
+		{
+			"key": "upload_url",
+			"value": ""
+		},
+		{
+			"key": "server",
+			"value": ""
+		},
+		{
+			"key": "photo",
+			"value": ""
+		},
+		{
+			"key": "hash",
+			"value": ""
+		},
+		{
+			"key": "post_id",
+			"value": ""
+		},
+		{
+			"key": "picture_id",
+			"value": ""
+		}
+	]
+}
