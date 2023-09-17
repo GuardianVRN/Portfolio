@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "5739af7b-54dc-42bc-a168-9c43a80076cf",
+		"name": "Диплом",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25095353"
+	},
+	"item": [
+		{
+			"name": "Получение главной страницы – без действующего токена",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api-vimbox.skyeng.ru/api/v1/compilations/showcase",
+					"protocol": "https",
+					"host": [
+						"api-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"compilations",
+						"showcase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение главной страницы – с действующим токеном",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{token_global}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-vimbox.skyeng.ru/api/v1/compilations/showcase",
+					"protocol": "https",
+					"host": [
+						"api-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"compilations",
+						"showcase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение списка студентов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{token_global}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rooms-vimbox.skyeng.ru/users/api/v1/teachers/14720069/students",
+					"protocol": "https",
+					"host": [
+						"rooms-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"users",
+						"api",
+						"v1",
+						"teachers",
+						"14720069",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получения списка закладок",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{token_global}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-vimbox.skyeng.ru/api/v1/compilations/bookmarks",
+					"protocol": "https",
+					"host": [
+						"api-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"api",
+						"v1",
+						"compilations",
+						"bookmarks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Просмотр видеоурока по резервной ссылке (для определенного урока)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{token_global}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://cdn-user36618.skyeng.ru/video/converted/9d3aa5de72abb9624de411c0d7686854_720p.mp4",
+					"protocol": "https",
+					"host": [
+						"cdn-user36618",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"video",
+						"converted",
+						"9d3aa5de72abb9624de411c0d7686854_720p.mp4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Отправка домашнего задания (определенный урок)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{token_global}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rooms-vimbox.skyeng.ru/rooms/api/v1/homeworks/workbook/53336693/step/22d7842b-4de9-47a5-ac21-ea0d2bc87ca1",
+					"protocol": "https",
+					"host": [
+						"rooms-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"rooms",
+						"api",
+						"v1",
+						"homeworks",
+						"workbook",
+						"53336693",
+						"step",
+						"22d7842b-4de9-47a5-ac21-ea0d2bc87ca1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Отмена домашнего задания (определенный урок)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{token_global}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rooms-vimbox.skyeng.ru/rooms/api/v1/homeworks/workbook/53336693/step/22d7842b-4de9-47a5-ac21-ea0d2bc87ca1",
+					"protocol": "https",
+					"host": [
+						"rooms-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"rooms",
+						"api",
+						"v1",
+						"homeworks",
+						"workbook",
+						"53336693",
+						"step",
+						"22d7842b-4de9-47a5-ac21-ea0d2bc87ca1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение результата урока (для определенного урока)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "{{token_global}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rooms-vimbox.skyeng.ru/rooms/api/v1/rooms/visazokuxo/workbooks",
+					"protocol": "https",
+					"host": [
+						"rooms-vimbox",
+						"skyeng",
+						"ru"
+					],
+					"path": [
+						"rooms",
+						"api",
+						"v1",
+						"rooms",
+						"visazokuxo",
+						"workbooks"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token_global",
+			"value": "token_global=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjE0NzIwMDY5LCJpZGVudGl0eSI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsImlkZW50aXR5TG9naW4iOm51bGwsImlkZW50aXR5RW1haWwiOiJ0ZXN0LnRzdDMyMEBza3llbmcucnUiLCJpZGVudGl0eVBob25lIjoiKzc5ODU0NTg2NTY4IiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjpudWxsLCJlbWFpbCI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsInVpTGFuZ3VhZ2UiOiJydSIsImxvY2FsZSI6InJ1Iiwic2VydmljZUxvY2FsZSI6bnVsbCwidWFzIjozMCwiand0VHlwZSI6MSwianRpIjoibmRPOHlMSEdYS3ZDUkNXT2N6bUZIVDZ3ZlJ3Y1U1UUwiLCJicmFuZCI6bnVsbCwiZXhwIjoxNjg4MzcwOTY1LCJhSXNTdHJvbmciOnRydWUsImFUeXBlIjoiVVNFUk5BTUVfUEFTU1dPUkQiLCJhVGltZSI6MTY4NzA5OTg2Miwicm9sZXMiOlsiUk9MRV9URUFDSEVSX0NBTkRJREFURSIsIlJPTEVfVEVBQ0hFUl9DQU5ESURBVEVfQkFTRV9BQ0NFU1MiLCJST0xFX1RUQ19VU0FHRSIsIlJPTEVfVklNQk9YX1RFQUNIRVJfVVNBR0UiLCJST0xFX1RFQUNIRVIiLCJST0xFX0NSTTJfVEVBQ0hFUl9BQ0NFU1MiLCJST0xFX01BVEhfVEVBQ0hFUiIsIlJPTEVfTUFUSF9DT05URU5UX1RIRU1FX1ZJRVciXX0.dwFrOPh3fCSOnd207vhUg2tPnqnkOJcISdSaRov8KG8cxJGc-iKPTyxAcXQWv3MzypAv40uSK8u4bCd0Cp--rjCS60QUSRE536TsSPWV0gY2iLN9e2HG8-Fp2F2cpdkq9vC0cW9LEQFtUOp38djv_9GaaCiirp4L4D8i68UotNZmZwfN63u13hya1e5An-JkSZpNVzPZP88z4iraEGEJpRC8UJsIbLH5fbvTQpfSVZvgEj8wScvGGg3J_DMhGJRM1g5zENbbnaWLNPTwFiBXLDSgcK12d9eOjHJ47DGwdkkQS6HA4R5XCXKhKC7KYapB--WqTDEHayl7P1tXdhNkA0yHsMkdb-UsXppq0RlUgmXQkGQD201QRnFXeNBzIt-ZOpecOldnE6Y9Z79urSLpjw5jGn20G9fQVcwRAb9nXTLCDxNC7vGdTG-8XnQIXhbLCm0BXZCdE2pgsvWXEaQFz8sIhrgirkMpOOXsbfxYsptT_t-5lqA-GSF_dVLcbqXVa5EI_q6fqw0APfWVjLpRb9R6l9XwoQq_BnV1zCbKsPlJfC8AFmFNqWGnXGGM5Dc6Gi0uI_ZkEUKZ1sddQnhRiRM92mgwRnDAusEjAgeyxQPnF0DGnj4g826mzC3CDxpVEMevnsJvZfqbBg7BLbstXVDIIVtGuThZv0aA4WuUycA",
+			"type": "string"
+		}
+	]
+}
