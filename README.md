@@ -57,7 +57,6 @@
 * Sitechco.ru
 * Quase.io
 * Postman
-* Charles
 * Confluence
 * Jira
 
